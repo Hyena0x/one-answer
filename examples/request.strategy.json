@@ -1,0 +1,8 @@
+{
+  "question": "How should I explain One Answer so developers immediately understand why it matters?",
+  "context": "One Answer is a final-answer layer that takes multiple AI answer paths and returns one answer with consensus, disagreement, uncertainty, and confidence. The audience is developers who already use multiple models and are tired of manually merging answers.",
+  "preset": "fast-balanced",
+  "goal": "answer",
+  "audience": "developer",
+  "max_answer_style": "balanced"
+}

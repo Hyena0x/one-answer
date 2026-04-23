@@ -1,0 +1,49 @@
+{
+  "name": "one-answer",
+  "version": "0.1.0",
+  "description": "MCP/API-first final-answer layer for synthesizing multiple AI answer paths.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hyena0x/one-answer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Hyena0x/one-answer/issues"
+  },
+  "homepage": "https://github.com/Hyena0x/one-answer#readme",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "files": [
+    "dist/src",
+    "docs",
+    "examples",
+    "schemas",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "compare-demo": "tsx src/cli/run-compare-demo.ts",
+    "dev": "tsx src/index.ts",
+    "dual-demo": "tsx src/cli/run-dual-demo.ts",
+    "injected-demo": "tsx src/cli/run-injected-demo.ts",
+    "mcp": "tsx src/mcp/server.ts",
+    "prepack": "npm run build",
+    "synthesize": "tsx src/cli/run-local.ts",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

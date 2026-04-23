@@ -1,0 +1,8 @@
+{
+  "question": "Should I keep building a standalone AI desktop client or pivot to a narrow MCP tool?",
+  "context": "Solo open-source project. Limited time. Need something easier to ship and more likely to get adoption.",
+  "preset": "deep-reasoning",
+  "goal": "decision",
+  "audience": "developer",
+  "max_answer_style": "balanced"
+}

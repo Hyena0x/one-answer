@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alae.dev/schemas/alae_synthesize.output.v1.json",
+  "title": "alae_synthesize output v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "final_answer",
+    "consensus_points",
+    "divergence_points",
+    "uncertainties",
+    "confidence",
+    "meta"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "final_answer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24000
+    },
+    "consensus_points": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      },
+      "maxItems": 12,
+      "default": []
+    },
+    "divergence_points": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      },
+      "maxItems": 12,
+      "default": []
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 1000
+      },
+      "maxItems": 12,
+      "default": []
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "reason"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["preset", "goal", "audience", "answer_style"],
+      "properties": {
+        "preset": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "goal": {
+          "type": "string",
+          "enum": ["answer", "decision", "plan", "debug"]
+        },
+        "audience": {
+          "type": "string",
+          "enum": ["general", "developer", "expert"]
+        },
+        "answer_style": {
+          "type": "string",
+          "enum": ["concise", "balanced", "detailed"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alae.dev/schemas/alae_synthesize.input.v1.json",
+  "title": "alae_synthesize input v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["question", "preset"],
+  "properties": {
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12000,
+      "description": "The user's core question or task."
+    },
+    "context": {
+      "type": "string",
+      "maxLength": 24000,
+      "description": "Optional extra context such as code, notes, constraints, prior answers, or background facts."
+    },
+    "preset": {
+      "type": "string",
+      "enum": ["fast-balanced", "deep-reasoning", "low-cost"],
+      "description": "A V1 preset that maps to a server-defined model bundle and synthesis strategy."
+    },
+    "goal": {
+      "type": "string",
+      "enum": ["answer", "decision", "plan", "debug"],
+      "default": "answer",
+      "description": "The intended shape of the final output."
+    },
+    "audience": {
+      "type": "string",
+      "enum": ["general", "developer", "expert"],
+      "default": "general",
+      "description": "Who the final answer is for."
+    },
+    "max_answer_style": {
+      "type": "string",
+      "enum": ["concise", "balanced", "detailed"],
+      "default": "balanced",
+      "description": "Controls output verbosity."
+    }
+  }
+}

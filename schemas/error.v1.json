@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alae.dev/schemas/error.v1.json",
+  "title": "alae error v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["error"],
+  "properties": {
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["code", "message", "retryable"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "enum": [
+            "INVALID_INPUT",
+            "UNKNOWN_PRESET",
+            "NO_RUNTIME_PROVIDER",
+            "UPSTREAM_FAILURE",
+            "SYNTHESIS_FAILED",
+            "TIMEOUT"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

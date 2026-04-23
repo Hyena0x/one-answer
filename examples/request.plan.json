@@ -1,0 +1,8 @@
+{
+  "question": "I have a working alpha of One Answer with schemas, single-model synthesis, an OpenAI-compatible adapter, and a minimal MCP stdio server. What should the next 2 weeks of implementation focus on?",
+  "context": "Priority is getting to a usable early product without overbuilding. The product should stay narrow, integration-first, and useful to developers quickly.",
+  "preset": "deep-reasoning",
+  "goal": "plan",
+  "audience": "developer",
+  "max_answer_style": "balanced"
+}

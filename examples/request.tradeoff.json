@@ -1,0 +1,8 @@
+{
+  "question": "For One Answer, should the next major milestone be dual-model synthesis or better host integration and evaluation?",
+  "context": "The project already has schemas, single-model synthesis, injected-provider demo, and a minimal MCP stdio server. Time is limited. The goal is to choose the highest-leverage next milestone under uncertainty.",
+  "preset": "deep-reasoning",
+  "goal": "decision",
+  "audience": "developer",
+  "max_answer_style": "balanced"
+}

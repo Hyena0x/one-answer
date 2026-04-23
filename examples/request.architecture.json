@@ -1,0 +1,8 @@
+{
+  "question": "For a solo developer building an AI product, is it better to ship a standalone desktop client first or a narrow MCP-native capability first?",
+  "context": "The product is an answer-synthesis layer. Time is limited. Distribution matters. The developer wants adoption faster and does not want to overbuild a heavy client surface.",
+  "preset": "deep-reasoning",
+  "goal": "decision",
+  "audience": "developer",
+  "max_answer_style": "balanced"
+}

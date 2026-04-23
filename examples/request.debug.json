@@ -1,0 +1,8 @@
+{
+  "question": "A Tauri + React desktop app feels slow on startup and occasionally shows blank content before rendering. What is the most likely debugging direction to start with?",
+  "context": "The app initializes i18n, theme state, provider status refresh, and a local database-backed history view on startup. The goal is to find the highest-leverage first debugging direction, not a full root-cause proof.",
+  "preset": "deep-reasoning",
+  "goal": "debug",
+  "audience": "developer",
+  "max_answer_style": "balanced"
+}
