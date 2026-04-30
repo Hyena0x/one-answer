@@ -1,5 +1,5 @@
 import { loadSynthesizeInputFromFile } from "./run-local.js";
-import { synthesizeDualModel, type CandidateArtifact, type DualFinalSynthesisPrompt, type DualModelSynthesisProvider } from "../core/alae-synthesize.js";
+import { synthesizeDualModel, type CandidateArtifact, type DualFinalSynthesisPrompt, type DualModelSynthesisProvider } from "../core/one-answer.js";
 
 function createDualDemoProvider(): DualModelSynthesisProvider {
   return {

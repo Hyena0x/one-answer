@@ -1,12 +1,12 @@
 import { loadSynthesizeInputFromFile } from "./run-local.js";
-import { runAlaeSynthesize, type RuntimeConfig, type RunAlaeSynthesizeResult } from "../index.js";
+import { runOneAnswer, type RuntimeConfig, type RunOneAnswerResult } from "../index.js";
 import type {
   CandidateArtifact,
   FinalSynthesisArtifact,
   RuntimeStage,
   SingleModelPrompt,
   SingleModelSynthesisProvider,
-} from "../core/alae-synthesize.js";
+} from "../core/one-answer.js";
 
 function createInjectedDemoProvider(): SingleModelSynthesisProvider {
   return {
@@ -234,7 +234,7 @@ export async function runInjectedProviderDemo(input: {
     provider: createInjectedDemoProvider(),
     mode: "single-model",
   };
-  const result: RunAlaeSynthesizeResult = await runAlaeSynthesize(request, runtime);
+  const result: RunOneAnswerResult = await runOneAnswer(request, runtime);
   return JSON.stringify(result, null, 2);
 }
 

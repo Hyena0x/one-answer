@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://alae.dev/schemas/error.v1.json",
-  "title": "alae error v1",
+  "$id": "https://github.com/Hyena0x/one-answer/schemas/error.v1.json",
+  "title": "one_answer error v1",
   "type": "object",
   "additionalProperties": false,
   "required": ["error"],

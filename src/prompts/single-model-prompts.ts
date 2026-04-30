@@ -4,7 +4,7 @@ import type {
   PrimaryPrompt,
   RuntimeStage,
   SingleModelPrompt,
-} from "../core/alae-synthesize.js";
+} from "../core/one-answer.js";
 
 function prettyJson(value: unknown) {
   return JSON.stringify(value, null, 2);

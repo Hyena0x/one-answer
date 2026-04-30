@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { runAlaeSynthesize } from "../src/index.js";
-import type { DualModelSynthesisProvider, SingleModelSynthesisProvider } from "../src/core/alae-synthesize.js";
+import { runOneAnswer } from "../src/index.js";
+import type { DualModelSynthesisProvider, SingleModelSynthesisProvider } from "../src/core/one-answer.js";
 
-describe("runAlaeSynthesize", () => {
+describe("runOneAnswer", () => {
   it("uses real single-model mode when runtime config is provided", async () => {
     const fetchMock = vi.fn(async () => ({
       ok: true,
@@ -62,7 +62,7 @@ describe("runAlaeSynthesize", () => {
       };
     });
 
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "Should I build the desktop client or the MCP tool first?",
         preset: "deep-reasoning",
@@ -114,7 +114,7 @@ describe("runAlaeSynthesize", () => {
       },
     };
 
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "What runtime should be used?",
         preset: "fast-balanced",
@@ -134,7 +134,7 @@ describe("runAlaeSynthesize", () => {
   });
 
   it("returns a structured no-runtime error when no usable runtime exists", async () => {
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "What should I do next?",
         preset: "fast-balanced",
@@ -152,7 +152,7 @@ describe("runAlaeSynthesize", () => {
   });
 
   it("rejects missing required input before runtime resolution", async () => {
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         preset: "fast-balanced",
       } as never,
@@ -172,7 +172,7 @@ describe("runAlaeSynthesize", () => {
   it("rejects unknown presets before calling a runtime provider", async () => {
     const complete = vi.fn();
 
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "What should I do next?",
         preset: "unknown-preset",
@@ -203,7 +203,7 @@ describe("runAlaeSynthesize", () => {
       throw new Error("later stages should not run");
     });
 
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "What should I do next?",
         preset: "fast-balanced",
@@ -267,7 +267,7 @@ describe("runAlaeSynthesize", () => {
       },
     };
 
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "What should the next milestone be?",
         preset: "deep-reasoning",
@@ -321,7 +321,7 @@ describe("runAlaeSynthesize", () => {
       };
     });
 
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "What should the next milestone be?",
         preset: "deep-reasoning",
@@ -388,7 +388,7 @@ describe("runAlaeSynthesize", () => {
       },
     };
 
-    const result = await runAlaeSynthesize(
+    const result = await runOneAnswer(
       {
         question: "What should I ship first?",
         preset: "fast-balanced",

@@ -12,7 +12,7 @@ import type {
   RuntimeStage,
   SingleModelPrompt,
   SingleModelSynthesisProvider,
-} from "../core/alae-synthesize.js";
+} from "../core/one-answer.js";
 
 type MinimalResponse = {
   ok: boolean;

@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 
-import { runAlaeSynthesize, type RuntimeConfig, type RunAlaeSynthesizeResult } from "../index.js";
-import type { SynthesizeInput } from "../core/alae-synthesize.js";
+import { runOneAnswer, type RuntimeConfig, type RunOneAnswerResult } from "../index.js";
+import type { SynthesizeInput } from "../core/one-answer.js";
 
 export async function loadSynthesizeInputFromFile(path: string | URL): Promise<SynthesizeInput> {
   const content = await readFile(path, "utf8");
@@ -13,7 +13,7 @@ export async function runLocalSynthesize(input: {
   runtime?: RuntimeConfig;
 }): Promise<string> {
   const request = await loadSynthesizeInputFromFile(input.inputFile);
-  const result: RunAlaeSynthesizeResult = await runAlaeSynthesize(request, input.runtime);
+  const result: RunOneAnswerResult = await runOneAnswer(request, input.runtime);
   return JSON.stringify(result, null, 2);
 }
 

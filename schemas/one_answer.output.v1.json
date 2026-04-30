@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://alae.dev/schemas/alae_synthesize.output.v1.json",
-  "title": "alae_synthesize output v1",
+  "$id": "https://github.com/Hyena0x/one-answer/schemas/one_answer.output.v1.json",
+  "title": "one_answer output v1",
   "type": "object",
   "additionalProperties": false,
   "required": [

@@ -1,7 +1,7 @@
 # One Answer prompt contract v1
 
 This document defines the prompt and output contract for the internal V1 tool:
-- `alae_synthesize`
+- `one_answer`
 
 External product name:
 - `One Answer`

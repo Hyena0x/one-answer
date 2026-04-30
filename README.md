@@ -31,7 +31,7 @@ Use it when:
 ## V1 scope
 
 V1 intentionally does one thing only:
-- public tool: `alae_synthesize`
+- public tool: `one_answer`
 
 Not in V1:
 - public compare tool
@@ -45,11 +45,11 @@ External product name:
 - `One Answer`
 
 Internal V1 tool name:
-- `alae_synthesize`
+- `one_answer`
 
 Why the split:
 - `One Answer` is the user-facing product identity
-- `alae_synthesize` is the implementation-level tool name used by MCP/API integrations
+- `one_answer` is the implementation-level tool name used by MCP/API integrations
 
 ## V1 tool contract
 
@@ -69,7 +69,7 @@ Optional:
 - `max_answer_style`
 
 See:
-- `schemas/alae_synthesize.input.v1.json`
+- `schemas/one_answer.input.v1.json`
 
 ## Output schema summary
 
@@ -83,7 +83,7 @@ Returns:
 - `meta`
 
 See:
-- `schemas/alae_synthesize.output.v1.json`
+- `schemas/one_answer.output.v1.json`
 
 ## Error schema summary
 
@@ -124,6 +124,27 @@ Recommended external tagline:
 Short version:
 - `Ask many models once. Get one final answer.`
 
+## Install
+
+```bash
+npm install @hyena0x/one-answer
+```
+
+## Library usage
+
+```ts
+import { runOneAnswer } from "@hyena0x/one-answer";
+
+const result = await runOneAnswer({
+  question: "Should I use one model or compare multiple models for this decision?",
+  preset: "deep-reasoning",
+  goal: "decision",
+  audience: "developer",
+});
+
+console.log(result);
+```
+
 ## Local smoke run
 
 Default stub run:
@@ -163,13 +184,19 @@ Start the minimal MCP stdio server:
 npm run mcp
 ```
 
+After installing the package, run the stdio server with:
+
+```bash
+npx --package @hyena0x/one-answer one-answer-mcp
+```
+
 It currently supports:
 - `initialize`
 - `tools/list`
 - `tools/call`
 
 Exposed tool:
-- `alae_synthesize`
+- `one_answer`
 
 This is the recommended embedded/hosted integration path for agent runtimes and MCP-capable hosts.
 

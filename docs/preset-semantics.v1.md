@@ -3,7 +3,7 @@
 This document defines the runtime behavior of V1 presets for One Answer.
 
 Internal tool name:
-- `alae_synthesize`
+- `one_answer`
 
 
 Goal:

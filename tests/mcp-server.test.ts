@@ -1,8 +1,13 @@
 import { describe, expect, it } from "vitest";
+import { mkdtempSync, rmSync, symlinkSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 import {
   createMcpServerInfo,
   handleMcpRequest,
+  isDirectMcpServerExecution,
 } from "../src/mcp/server.js";
 
 describe("createMcpServerInfo", () => {
@@ -11,6 +16,22 @@ describe("createMcpServerInfo", () => {
 
     expect(info.name).toBe("one-answer");
     expect(info.version).toBe("0.1.0");
+  });
+});
+
+describe("isDirectMcpServerExecution", () => {
+  it("recognizes direct execution through an npm bin symlink", () => {
+    const targetPath = fileURLToPath(new URL("../src/mcp/server.ts", import.meta.url));
+    const tempDir = mkdtempSync(join(tmpdir(), "one-answer-mcp-"));
+    const linkPath = join(tempDir, "one-answer-mcp");
+
+    try {
+      symlinkSync(targetPath, linkPath);
+
+      expect(isDirectMcpServerExecution(pathToFileURL(targetPath).href, linkPath)).toBe(true);
+    } finally {
+      rmSync(tempDir, { recursive: true, force: true });
+    }
   });
 });
 
@@ -28,7 +49,7 @@ describe("handleMcpRequest", () => {
     expect(response.result.protocolVersion).toBe("2024-11-05");
   });
 
-  it("returns the alae_synthesize tool from tools/list", async () => {
+  it("returns the one_answer tool from tools/list", async () => {
     const response = await handleMcpRequest({
       jsonrpc: "2.0",
       id: 2,
@@ -38,7 +59,7 @@ describe("handleMcpRequest", () => {
 
     expect(response.id).toBe(2);
     expect(response.result.tools).toHaveLength(1);
-    expect(response.result.tools[0].name).toBe("alae_synthesize");
+    expect(response.result.tools[0].name).toBe("one_answer");
     expect(response.result.tools[0].title).toBe("One Answer");
   });
 
@@ -48,7 +69,7 @@ describe("handleMcpRequest", () => {
       id: 3,
       method: "tools/call",
       params: {
-        name: "alae_synthesize",
+        name: "one_answer",
         arguments: {
           question: "Should I build the desktop client or the MCP tool first?",
           preset: "deep-reasoning",
@@ -70,7 +91,7 @@ describe("handleMcpRequest", () => {
       id: 5,
       method: "tools/call",
       params: {
-        name: "alae_synthesize",
+        name: "one_answer",
         arguments: {
           preset: "deep-reasoning",
         },

@@ -10,7 +10,7 @@ import {
   type SynthesizeInput,
   type SingleModelSynthesisProvider,
   type DualModelSynthesisProvider,
-} from "../src/core/alae-synthesize.js";
+} from "../src/core/one-answer.js";
 
 describe("buildSynthesizeStubResult", () => {
   it("returns a schema-shaped stub result for a decision prompt", () => {

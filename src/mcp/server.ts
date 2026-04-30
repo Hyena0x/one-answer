@@ -1,6 +1,9 @@
+#!/usr/bin/env node
+import { realpathSync } from "node:fs";
 import readline from "node:readline";
+import { fileURLToPath } from "node:url";
 
-import { createToolManifest, runAlaeSynthesize } from "../index.js";
+import { createToolManifest, runOneAnswer } from "../index.js";
 
 export type JsonRpcRequest = {
   jsonrpc?: string;
@@ -56,7 +59,7 @@ function toolDescriptor() {
 }
 
 async function handleToolCall(name: string, args: Record<string, unknown> = {}) {
-  if (name !== "alae_synthesize") {
+  if (name !== "one_answer") {
     return {
       content: [
         {
@@ -68,7 +71,7 @@ async function handleToolCall(name: string, args: Record<string, unknown> = {}) 
     };
   }
 
-  const result = await runAlaeSynthesize(args as never);
+  const result = await runOneAnswer(args as never);
   const isRuntimeError = "error" in result;
   return {
     content: [
@@ -134,6 +137,18 @@ export async function serveStdio() {
   }
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+export function isDirectMcpServerExecution(moduleUrl: string, argvPath?: string) {
+  if (!argvPath) {
+    return false;
+  }
+
+  try {
+    return fileURLToPath(moduleUrl) === realpathSync(argvPath);
+  } catch {
+    return false;
+  }
+}
+
+if (isDirectMcpServerExecution(import.meta.url, process.argv[1])) {
   void serveStdio();
 }

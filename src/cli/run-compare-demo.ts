@@ -1,9 +1,9 @@
 import { runInjectedProviderDemo } from "./run-injected-demo.js";
 import { runDualDemo } from "./run-dual-demo.js";
 import { loadSynthesizeInputFromFile } from "./run-local.js";
-import { runAlaeSynthesize, type RuntimeConfig } from "../index.js";
+import { runOneAnswer, type RuntimeConfig } from "../index.js";
 import { createDualOpenAICompatibleProvider } from "../providers/openai-compatible.js";
-import { synthesizeDualModel } from "../core/alae-synthesize.js";
+import { synthesizeDualModel } from "../core/one-answer.js";
 
 function summarizeComparison(single: { final_answer: string }, dual: { final_answer: string }) {
   const notes: string[] = [];
@@ -53,7 +53,7 @@ export async function runCompareDemo(input: { inputFile: string | URL; runtime?:
   }
 
   const request = await loadSynthesizeInputFromFile(input.inputFile);
-  const singleResult = await runAlaeSynthesize(request, {
+  const singleResult = await runOneAnswer(request, {
     ...input.runtime,
     mode: "single-model",
   });

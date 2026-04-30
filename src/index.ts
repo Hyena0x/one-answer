@@ -6,7 +6,7 @@ import {
   type SingleModelSynthesisProvider,
   type SynthesizeInput,
   type SynthesizeOutput,
-} from "./core/alae-synthesize.js";
+} from "./core/one-answer.js";
 import {
   createDualOpenAICompatibleProvider,
   createOpenAICompatibleProvider,
@@ -65,11 +65,11 @@ export type RuntimeErrorResult = {
   };
 };
 
-export type RunAlaeSynthesizeResult = SynthesizeOutput | RuntimeErrorResult;
+export type RunOneAnswerResult = SynthesizeOutput | RuntimeErrorResult;
 
 export function createToolManifest() {
   return {
-    name: "alae_synthesize",
+    name: "one_answer",
     title: "One Answer",
     description:
       "Turn multiple AI answer paths into one final answer the user can actually use, with consensus, disagreement, uncertainty, and confidence.",
@@ -127,7 +127,7 @@ function validateSynthesizeInput(input: unknown): SynthesizeInput | RuntimeError
     const issue = parsed.error.issues[0];
     const path = issue?.path.length ? issue.path.join(".") : "input";
     const detail = issue ? `${path}: ${issue.message}` : "input is invalid";
-    return invalidInputError(`Invalid alae_synthesize input: ${detail}.`);
+    return invalidInputError(`Invalid one_answer input: ${detail}.`);
   }
 
   if (!VALID_PRESETS.includes(parsed.data.preset as (typeof VALID_PRESETS)[number])) {
@@ -181,10 +181,10 @@ function shouldUseDualModel(input: SynthesizeInput, runtime: RuntimeConfig) {
   return input.preset === "deep-reasoning";
 }
 
-export async function runAlaeSynthesize(
+export async function runOneAnswer(
   input: SynthesizeInput,
   runtimeConfig?: RuntimeConfig,
-): Promise<RunAlaeSynthesizeResult> {
+): Promise<RunOneAnswerResult> {
   const validatedInput = validateSynthesizeInput(input);
   if ("error" in validatedInput) {
     return validatedInput;
