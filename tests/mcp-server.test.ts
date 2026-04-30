@@ -64,6 +64,25 @@ describe("handleMcpRequest", () => {
     expect(response.result.isError).toBe(false);
   });
 
+  it("marks tool calls as MCP errors when the runtime returns a structured error", async () => {
+    const response = await handleMcpRequest({
+      jsonrpc: "2.0",
+      id: 5,
+      method: "tools/call",
+      params: {
+        name: "alae_synthesize",
+        arguments: {
+          preset: "deep-reasoning",
+        },
+      },
+    });
+
+    expect(response.id).toBe(5);
+    expect(response.result.content[0].type).toBe("text");
+    expect(response.result.content[0].text).toContain("INVALID_INPUT");
+    expect(response.result.isError).toBe(true);
+  });
+
   it("returns an MCP error result for unknown tools", async () => {
     const response = await handleMcpRequest({
       jsonrpc: "2.0",

@@ -1,5 +1,5 @@
 {
-  "name": "one-answer",
+  "name": "@hyena0x/one-answer",
   "version": "0.1.0",
   "description": "MCP/API-first final-answer layer for synthesizing multiple AI answer paths.",
   "license": "MIT",
@@ -12,6 +12,9 @@
     "url": "https://github.com/Hyena0x/one-answer/issues"
   },
   "homepage": "https://github.com/Hyena0x/one-answer#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/src/index.d.ts",

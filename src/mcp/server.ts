@@ -69,6 +69,7 @@ async function handleToolCall(name: string, args: Record<string, unknown> = {}) 
   }
 
   const result = await runAlaeSynthesize(args as never);
+  const isRuntimeError = "error" in result;
   return {
     content: [
       {
@@ -76,7 +77,7 @@ async function handleToolCall(name: string, args: Record<string, unknown> = {}) 
         text: JSON.stringify(result, null, 2),
       },
     ],
-    isError: false,
+    isError: isRuntimeError,
   };
 }
 
