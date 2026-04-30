@@ -1,0 +1,14 @@
+{
+  "name": "decision-demo",
+  "input_file": "../request.decision.json",
+  "expected_winner": "dual",
+  "single_final_answer_must_include": [
+    "narrow MCP capability first"
+  ],
+  "dual_final_answer_must_include": [
+    "thin demo surface"
+  ],
+  "comparison_notes_must_include": [
+    "Single-model output is still useful"
+  ]
+}

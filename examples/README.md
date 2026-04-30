@@ -10,4 +10,13 @@ Current files:
 - `request.strategy.json`
 - `request.tradeoff.json`
 
-These are seed fixtures for future MCP/API and golden-example tests.
+Golden eval cases live under:
+- `golden/*.eval.json`
+
+Run the current local eval loop with:
+
+```bash
+npm run eval
+```
+
+These request files are the seed fixtures for MCP/API demos and golden-example tests.

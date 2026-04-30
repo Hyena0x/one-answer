@@ -1,0 +1,14 @@
+{
+  "name": "tradeoff-demo",
+  "input_file": "../request.tradeoff.json",
+  "expected_winner": "dual",
+  "single_final_answer_must_include": [
+    "host integration and evaluation"
+  ],
+  "dual_final_answer_must_include": [
+    "two distinct answer paths"
+  ],
+  "comparison_notes_must_include": [
+    "Single-model output is still useful"
+  ]
+}

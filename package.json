@@ -30,6 +30,7 @@
     "compare-demo": "tsx src/cli/run-compare-demo.ts",
     "dev": "tsx src/index.ts",
     "dual-demo": "tsx src/cli/run-dual-demo.ts",
+    "eval": "npm run build && node dist/src/cli/run-eval.js",
     "injected-demo": "tsx src/cli/run-injected-demo.ts",
     "mcp": "tsx src/mcp/server.ts",
     "prepack": "npm run build",
