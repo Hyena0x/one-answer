@@ -16,7 +16,7 @@
     "access": "public"
   },
   "bin": {
-    "one-answer-mcp": "./dist/src/mcp/server.js"
+    "one-answer-mcp": "dist/src/mcp/server.js"
   },
   "exports": {
     ".": {
