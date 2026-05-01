@@ -1,6 +1,6 @@
 {
   "name": "@hyena0x/one-answer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP/API-first final-answer layer for synthesizing multiple AI answer paths.",
   "license": "MIT",
   "type": "module",

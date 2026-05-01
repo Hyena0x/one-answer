@@ -130,6 +130,12 @@ Short version:
 npm install @hyena0x/one-answer
 ```
 
+For one-off MCP usage without installing into the current project:
+
+```bash
+npx --yes --package @hyena0x/one-answer one-answer-mcp
+```
+
 ## Library usage
 
 ```ts
@@ -147,7 +153,7 @@ console.log(result);
 
 ## Local smoke run
 
-Default stub run:
+Default local smoke runs use the built-in stub runtime. The stub is useful for checking the package shape, CLI wiring, schema, and MCP plumbing without sending requests to a model provider.
 
 ```bash
 npm run synthesize
@@ -158,6 +164,28 @@ Run with a specific input file:
 ```bash
 npm run synthesize -- ./examples/request.decision.json
 ```
+
+## Real provider smoke run
+
+Set a real OpenAI-compatible runtime to run a non-stub answer:
+
+```bash
+ONE_ANSWER_MODE=single-model \
+ONE_ANSWER_API_KEY=your_key \
+ONE_ANSWER_MODEL=gpt-4.1-mini \
+ONE_ANSWER_BASE_URL=https://api.openai.com/v1 \
+node --input-type=module -e 'import { runOneAnswer } from "@hyena0x/one-answer"; const result = await runOneAnswer({ question: "Should I keep this tool MCP-first?", preset: "fast-balanced", goal: "decision", audience: "developer" }); console.log(JSON.stringify(result, null, 2));'
+```
+
+Required env for standalone real mode:
+- `ONE_ANSWER_MODE=single-model`
+- `ONE_ANSWER_API_KEY`
+- `ONE_ANSWER_MODEL`
+
+Optional:
+- `ONE_ANSWER_BASE_URL`
+
+If these variables are missing in `single-model` mode, One Answer returns a structured `NO_RUNTIME_PROVIDER` error instead of silently pretending to use a model.
 
 ## Runtime resolution order
 
@@ -187,7 +215,7 @@ npm run mcp
 After installing the package, run the stdio server with:
 
 ```bash
-npx --package @hyena0x/one-answer one-answer-mcp
+npx --yes --package @hyena0x/one-answer one-answer-mcp
 ```
 
 It currently supports:
@@ -199,6 +227,42 @@ Exposed tool:
 - `one_answer`
 
 This is the recommended embedded/hosted integration path for agent runtimes and MCP-capable hosts.
+
+## MCP host configuration
+
+Most MCP hosts use a JSON server entry with `command`, `args`, and optional `env` fields. Use this shape for a stub-only local wiring check:
+
+```json
+{
+  "mcpServers": {
+    "one-answer": {
+      "command": "npx",
+      "args": ["--yes", "--package", "@hyena0x/one-answer", "one-answer-mcp"]
+    }
+  }
+}
+```
+
+Use this shape when the host should provide a real OpenAI-compatible runtime:
+
+```json
+{
+  "mcpServers": {
+    "one-answer": {
+      "command": "npx",
+      "args": ["--yes", "--package", "@hyena0x/one-answer", "one-answer-mcp"],
+      "env": {
+        "ONE_ANSWER_MODE": "single-model",
+        "ONE_ANSWER_API_KEY": "your_key",
+        "ONE_ANSWER_MODEL": "gpt-4.1-mini",
+        "ONE_ANSWER_BASE_URL": "https://api.openai.com/v1"
+      }
+    }
+  }
+}
+```
+
+Do not commit real API keys into shared MCP config files. Prefer user-local host config or host-level secret storage when available.
 
 ## Host-injected provider demo
 
@@ -238,7 +302,7 @@ This is the fastest way to evaluate whether multi-path synthesis is producing me
 
 The compare CLI also supports real OpenAI-compatible runtime config when called programmatically, so single and dual can be compared against the same real provider setup.
 
-Run against a real OpenAI-compatible endpoint in standalone dev mode:
+Run against a real OpenAI-compatible endpoint in standalone dev mode from this repository:
 
 ```bash
 ONE_ANSWER_MODE=single-model \
