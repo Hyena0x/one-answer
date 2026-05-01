@@ -15,7 +15,7 @@ describe("createMcpServerInfo", () => {
     const info = createMcpServerInfo();
 
     expect(info.name).toBe("one-answer");
-    expect(info.version).toBe("0.1.0");
+    expect(info.version).toBe("0.1.1");
   });
 });
 

@@ -5,6 +5,8 @@ import { fileURLToPath } from "node:url";
 
 import { createToolManifest, runOneAnswer } from "../index.js";
 
+const MCP_SERVER_VERSION = "0.1.1";
+
 export type JsonRpcRequest = {
   jsonrpc?: string;
   id?: string | number | null;
@@ -25,7 +27,7 @@ export type JsonRpcResponse = {
 export function createMcpServerInfo() {
   return {
     name: "one-answer",
-    version: "0.1.0",
+    version: MCP_SERVER_VERSION,
   };
 }
 

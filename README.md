@@ -116,7 +116,7 @@ one_answer
 
 No chat UI. No dashboard. No storage. No product ceremony.
 
-## Use A Real Provider
+## Use a Real Provider
 
 Real OpenAI-compatible runtime setup, MCP host env config, and local demos live in the usage guide.
 
@@ -130,3 +130,4 @@ Real OpenAI-compatible runtime setup, MCP host env config, and local demos live 
 - [Preset semantics](docs/preset-semantics.v1.md)
 - [Prompt contract](docs/prompt-contract.v1.md)
 - [Golden eval](docs/golden-eval.v1.md)
+- [Changelog](CHANGELOG.md)

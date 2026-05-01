@@ -1,9 +1,22 @@
 {
   "name": "@hyena0x/one-answer",
   "version": "0.1.1",
-  "description": "MCP/API-first final-answer layer for synthesizing multiple AI answer paths.",
+  "description": "Turn multiple AI answer paths into one decision-ready answer.",
   "license": "MIT",
   "type": "module",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai",
+    "llm",
+    "agents",
+    "multi-model",
+    "synthesis",
+    "confidence"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Hyena0x/one-answer.git"
@@ -29,6 +42,7 @@
     "docs",
     "examples",
     "schemas",
+    "CHANGELOG.md",
     "README.md"
   ],
   "scripts": {
